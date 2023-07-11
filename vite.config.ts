@@ -7,6 +7,7 @@ import { compression } from 'vite-plugin-compression2'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 const isDev = process.env.NODE_ENV === 'develpoment'
 
@@ -29,6 +30,7 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()]
     }),
+    ElementPlus({}),
     eslintPlugin({
       eslintOptions: {
         cache: false

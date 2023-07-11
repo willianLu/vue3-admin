@@ -1,5 +1,6 @@
 import router from './router'
 import NProgress from '@/utils/progress'
+import useCommonStore from '@/store/common'
 
 /** 路由白名单 */
 const whiteList = ['/login']
@@ -13,6 +14,9 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach(() => {
+router.afterEach(to => {
+  if (to.name && !to.meta?.noCached) {
+    useCommonStore().addKeepAlive(to.name as string)
+  }
   NProgress.done()
 })

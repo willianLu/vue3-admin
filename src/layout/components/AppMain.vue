@@ -2,10 +2,11 @@
   <section class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <component :is="Component" />
-        <!-- <keep-alive :include="cachedViews">
-          <router-view :key="key" />
-        </keep-alive> -->
+        <div class="app-container">
+          <keep-alive :include="commonStore.cachePageList">
+            <component :is="Component" />
+          </keep-alive>
+        </div>
       </transition>
     </router-view>
   </section>
@@ -14,15 +15,25 @@
 <script lang="ts" setup>
 // import { useRoute } from 'vue-router'
 // const route = useRoute()
+import useCommonStore from '@/store/common'
+const commonStore = useCommonStore()
 </script>
 
 <style lang="scss" scoped>
 .app-main {
   /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
   width: 100%;
   position: relative;
+  background-color: #f1f1f1;
   overflow: hidden;
+}
+
+.app-container {
+  margin: 12px;
+  min-height: calc(100% - 24px);
+  background-color: #fff;
+  overflow: auto;
 }
 
 .fixed-header + .app-main {
@@ -32,7 +43,7 @@
 .hasTagsView {
   .app-main {
     /* 84 = navbar + tags-view = 50 + 34 */
-    min-height: calc(100vh - 84px);
+    height: calc(100vh - 84px);
   }
 
   .fixed-header + .app-main {

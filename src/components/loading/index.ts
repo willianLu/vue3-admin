@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import { ElLoading } from 'element-plus'
-import 'vant/es/toast/style'
 import LoadingOverlay from './overlay.vue'
 import { isObject, isNumber, isString } from '@/utils/util'
 
@@ -17,7 +16,9 @@ let LoadingToast: ReturnType<typeof ElLoading.service> | null = null
 // 显示loading弹层
 function showLoading(message: string) {
   LoadingToast = ElLoading.service({
-    text: message
+    lock: true,
+    text: message,
+    background: 'rgba(0, 0, 0, 0.3)'
   })
 }
 // timeout延迟id

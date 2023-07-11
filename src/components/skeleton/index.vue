@@ -4,7 +4,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PropType } from 'vue'
-import { isString, pxToRem } from '@/utils/util'
+import { isString } from '@/utils/util'
 
 const props = defineProps({
   inline: {
@@ -76,7 +76,7 @@ function getValueUnit(num: string | number) {
   if (isString(num) && num.endsWith('%')) {
     return num
   }
-  return num ? pxToRem(num) : ''
+  return num + 'px'
 }
 </script>
 <style lang="scss" scoped>

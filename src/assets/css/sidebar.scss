@@ -165,6 +165,11 @@
                 transform: translate3d(-$sideBarWidth, 0, 0);
             }
         }
+
+        .app-container {
+            margin: 0;
+            min-height: 100%;
+        }
     }
 
     .withoutAnimation {
