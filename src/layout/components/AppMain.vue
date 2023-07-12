@@ -2,11 +2,9 @@
   <section class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <div class="app-container">
-          <keep-alive :include="commonStore.cachePageList">
-            <component :is="Component" />
-          </keep-alive>
-        </div>
+        <keep-alive :include="commonStore.cachePageList">
+          <component :is="Component" />
+        </keep-alive>
       </transition>
     </router-view>
   </section>
@@ -26,13 +24,6 @@ const commonStore = useCommonStore()
   width: 100%;
   position: relative;
   background-color: #f1f1f1;
-  overflow: hidden;
-}
-
-.app-container {
-  margin: 12px;
-  min-height: calc(100% - 24px);
-  background-color: #fff;
   overflow: auto;
 }
 
