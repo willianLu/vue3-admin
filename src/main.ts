@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, type Directive } from 'vue'
 import { createPinia } from 'pinia'
 import router from './routes'
 import '@/assets/css/index.scss'
@@ -14,4 +14,11 @@ console.log(Config, '======配置=====')
 import '../mock/index'
 
 const app = createApp(App)
+
+// 自定义指令
+import * as directives from '@/directives'
+Object.keys(directives).forEach(key => {
+  app.directive(key, (directives as { [key: string]: Directive })[key])
+})
+
 app.use(createPinia()).use(router).mount('#app')

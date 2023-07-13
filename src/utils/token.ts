@@ -12,5 +12,5 @@ export function getToken() {
 }
 
 export function removeToken() {
-  return Cookies.remove(TOKEN)
+  return Cookies.remove(TOKEN, { domain: Env.cookieDomin })
 }

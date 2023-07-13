@@ -19,7 +19,7 @@
 import { computed, watch } from 'vue'
 import { AppMain, Navbar, Sidebar } from './components'
 import useAppStore from '@/store/app'
-import useWindowSize from '@/hooks/useWindowSize'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const appStore = useAppStore()
 const rect = useWindowSize()

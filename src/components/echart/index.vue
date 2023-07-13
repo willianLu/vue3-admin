@@ -5,7 +5,7 @@
 import { ref, onMounted, nextTick, watch } from 'vue'
 import Echarts from '@/utils/echarts'
 import { isEmptyObject } from '@/utils/util'
-import useWindowSize from '@/hooks/useWindowSize'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const chart = ref<HTMLDivElement>()
 const props = defineProps({

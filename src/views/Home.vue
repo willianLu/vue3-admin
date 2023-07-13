@@ -1,81 +1,85 @@
 <template>
-  <div class="app-container">
-    <el-row :gutter="12">
-      <el-col :span="24" :md="12">
-        <el-card shadow="never">
-          <template #header>后台 版本日志</template>
-          <el-skeleton
-            animated
-            :rows="5"
-            :loading="loading"
-            style="height: 268px"
-          >
-            <template #default>
-              <el-scrollbar height="268px">
-                <el-timeline v-show="list?.length > 0">
-                  <el-timeline-item
-                    v-for="(item, index) in list"
-                    :key="index"
-                    color="#0bbd87"
-                    :timestamp="item.timestamp"
-                  >
-                    <div>{{ item.content }}</div>
-                  </el-timeline-item>
-                </el-timeline>
-                <el-empty v-show="list?.length === 0" />
-              </el-scrollbar>
-            </template>
-          </el-skeleton>
-        </el-card>
-      </el-col>
-      <el-col :span="24" :md="12">
-        <el-card shadow="never">
-          <template #header>后台 版本日志</template>
-          <el-skeleton
-            animated
-            :rows="5"
-            :loading="loading"
-            style="height: 268px"
-          >
-            <template #default>
-              <el-scrollbar height="268px">
-                <el-table :data="tableData" style="width: 100%">
-                  <el-table-column prop="date" label="时间" />
-                  <el-table-column prop="name" label="姓名" />
-                  <el-table-column prop="address" label="地址" />
-                </el-table>
-                <el-empty v-show="list?.length === 0" />
-              </el-scrollbar>
-            </template>
-          </el-skeleton>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-row :gutter="12">
-      <el-col :span="24" :md="8">
-        <el-card shadow="never">
-          <template #header>折线图标</template>
-          <TcEchart style="height: 360px" :options="lineOptions"></TcEchart>
-        </el-card>
-      </el-col>
-      <el-col :span="24" :md="8">
-        <el-card shadow="never">
-          <template #header>柱状图</template>
-          <TcEchart style="height: 360px" :options="barOptions"></TcEchart>
-        </el-card>
-      </el-col>
-      <el-col :span="24" :md="8">
-        <el-card shadow="never">
-          <template #header>饼图</template>
-          <TcEchart style="height: 360px" :options="pieOptions"></TcEchart>
-        </el-card>
-      </el-col>
-    </el-row>
-  </div>
+  <el-row :gutter="12">
+    <el-col :span="24" :md="12">
+      <el-card shadow="never">
+        <template #header>后台 版本日志</template>
+        <el-skeleton
+          animated
+          :rows="5"
+          :loading="loading"
+          style="height: 268px"
+        >
+          <template #default>
+            <el-scrollbar height="268px">
+              <el-timeline v-show="list?.length > 0">
+                <el-timeline-item
+                  v-for="(item, index) in list"
+                  :key="index"
+                  color="#0bbd87"
+                  :timestamp="item.timestamp"
+                >
+                  <div>{{ item.content }}</div>
+                </el-timeline-item>
+              </el-timeline>
+              <el-empty v-show="list?.length === 0" />
+            </el-scrollbar>
+          </template>
+        </el-skeleton>
+      </el-card>
+    </el-col>
+    <el-col :span="24" :md="12">
+      <el-card shadow="never">
+        <template #header>后台 版本日志</template>
+        <el-skeleton
+          animated
+          :rows="5"
+          :loading="loading"
+          style="height: 268px"
+        >
+          <template #default>
+            <el-scrollbar height="268px">
+              <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="date" label="时间">
+                  <template #default="{ row }">
+                    <div v-copy:click="row.date" style="user-select: none">
+                      时间: {{ row.date }}
+                    </div>
+                  </template>
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" />
+                <el-table-column prop="address" label="地址" />
+              </el-table>
+              <el-empty v-show="list?.length === 0" />
+            </el-scrollbar>
+          </template>
+        </el-skeleton>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-row :gutter="12">
+    <el-col :span="24" :md="8">
+      <el-card shadow="never">
+        <template #header>折线图标</template>
+        <TcEchart style="height: 360px" :options="lineOptions"></TcEchart>
+      </el-card>
+    </el-col>
+    <el-col :span="24" :md="8">
+      <el-card shadow="never">
+        <template #header>柱状图</template>
+        <TcEchart style="height: 360px" :options="barOptions"></TcEchart>
+      </el-card>
+    </el-col>
+    <el-col :span="24" :md="8">
+      <el-card shadow="never">
+        <template #header>饼图</template>
+        <TcEchart style="height: 360px" :options="pieOptions"></TcEchart>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import Loading from '@/components/loading'
+import Loading from '@/utils/loading'
 import TcEchart from '@/components/echart/index.vue'
 import { delay } from '@/utils/util'
 

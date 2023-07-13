@@ -3,7 +3,6 @@ interface EnvType {
   isDev: boolean
   isTest: boolean
   isProd: boolean
-  traceId: string
   cookieDomin: string
 }
 // 是否本地开发环境
@@ -17,8 +16,7 @@ const env: EnvType = {
   isDev,
   isTest: false,
   isProd: false,
-  cookieDomin: 'localhost',
-  traceId: '123456789'
+  cookieDomin: 'localhost'
 }
 // 根据域名识别当前环境
 const { hostname } = window.location
@@ -30,8 +28,6 @@ if (!isDev && /\.prod\./.test(hostname)) {
   env.type = 'test'
 }
 // 若需要二级域名共享cookie，则设置顶级域名
-if (hostname !== 'localhost') {
-  env.cookieDomin = hostname
-}
+env.cookieDomin = hostname
 
 export default env

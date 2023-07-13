@@ -3,8 +3,12 @@ export type RequiredPick<T, K extends keyof T> = {
 } & {
   [P in Exclude<keyof T, K>]: T[P]
 }
-export interface Tabbar {
-  title: string
-  icon: string
-  path: string
+
+export interface StorageOptions {
+  maxAge?: number | string
+  timestamp?: number
 }
+
+export type StorageData = {
+  value: any
+} & StorageOptions

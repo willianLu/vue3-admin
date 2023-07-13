@@ -46,7 +46,7 @@ export const local = {
     if (data.timestamp && data.maxAge) {
       const now = new Date().getTime()
       const maxAge = ms(data.maxAge)
-      if (now - data.timestamp > maxAge) {
+      if (now - data.timestamp > Number(maxAge)) {
         window.localStorage.removeItem(key)
         return undefined as any
       }

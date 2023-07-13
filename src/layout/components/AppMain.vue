@@ -2,9 +2,11 @@
   <section class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="commonStore.cachePageList">
-          <component :is="Component" />
-        </keep-alive>
+        <div class="app-container">
+          <keep-alive :include="commonStore.cachePageList">
+            <component :is="Component" />
+          </keep-alive>
+        </div>
       </transition>
     </router-view>
   </section>

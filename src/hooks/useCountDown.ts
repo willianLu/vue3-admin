@@ -11,7 +11,7 @@ export type CountDownOptions = {
 }
 
 // 秒级倒计时处理
-export default function handleCountDown(options?: CountDownOptions) {
+export function useCountDown(options?: CountDownOptions) {
   const { key, time = 60, onChange, onFinish } = options || {}
   const countDown = ref(0)
   let timeout: ReturnType<typeof setTimeout> | null = null
@@ -32,6 +32,7 @@ export default function handleCountDown(options?: CountDownOptions) {
   handleInit()
   // 开始执行倒计时
   function countDownStart() {
+    if (countDown.value > 0) return
     countDown.value = time
     if (key) {
       session.setItem(key, Date.now())
@@ -43,7 +44,7 @@ export default function handleCountDown(options?: CountDownOptions) {
     timeout = setTimeout(() => {
       countDown.value--
       onChange && onChange(countDown.value)
-      if (countDown.value) {
+      if (countDown.value > 0) {
         handleCountDown()
       } else if (key) {
         session.removeItem(key)
