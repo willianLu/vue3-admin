@@ -1,8 +1,7 @@
 import { ConfigType } from '@/types'
 
 const config: ConfigType = {
-  viewportWidth: 750,
-  domain: {}
+  title: '一地芒草'
 }
 
 export default config

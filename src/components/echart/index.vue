@@ -26,10 +26,10 @@ onMounted(() => {
     }
   })
 })
-watch([props.options], () => {
+watch(props.options, () => {
   if (chartInstance) chartInstance.setOptions(props.options)
 })
-watch([rect.width], () => {
+watch(rect.width, () => {
   if (chartInstance) chartInstance.resize()
 })
 </script>

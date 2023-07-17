@@ -11,7 +11,7 @@
         >
           <template #default>
             <el-scrollbar height="268px">
-              <el-timeline v-show="list?.length > 0">
+              <el-timeline v-show="list?.length > 0" style="padding: 4px">
                 <el-timeline-item
                   v-for="(item, index) in list"
                   :key="index"
@@ -42,7 +42,7 @@
                 <el-table-column prop="date" label="时间">
                   <template #default="{ row }">
                     <div v-copy:click="row.date" style="user-select: none">
-                      时间: {{ row.date }}
+                      {{ row.date }}
                     </div>
                   </template>
                 </el-table-column>
@@ -78,10 +78,11 @@
   </el-row>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import Loading from '@/utils/loading'
 import TcEchart from '@/components/echart/index.vue'
 import { delay } from '@/utils/util'
+import { usePageVisibility } from '@/hooks/usePageVisibility'
 
 defineOptions({
   name: 'HomePage'
@@ -196,6 +197,11 @@ async function getData() {
   loading.value = false
 }
 getData()
+
+const isVisibility = usePageVisibility()
+watch(isVisibility, value => {
+  console.log(value, '=========是否显示')
+})
 </script>
 <style lang="scss" scoped>
 .el-card {

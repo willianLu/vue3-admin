@@ -32,7 +32,7 @@ const resizeHandler = () => {
   }
 }
 resizeHandler()
-watch([rect.width], () => {
+watch(rect.width, () => {
   resizeHandler()
 })
 // 容器的class

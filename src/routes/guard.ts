@@ -1,6 +1,7 @@
 import router from './router'
 import NProgress from '@/utils/progress'
 import useCommonStore from '@/store/common'
+import Config from '@/config'
 
 /** 路由白名单 */
 const whiteList = ['/login']
@@ -18,5 +19,7 @@ router.afterEach(to => {
   if (to.name && !to.meta?.noCached) {
     useCommonStore().addKeepAlive(to.name as string)
   }
+  // 设置页面标题
+  document.title = (to.meta.title || Config.title) as string
   NProgress.done()
 })

@@ -16,3 +16,5 @@ export function onMountedOrActivated(hook: () => any) {
     }
   })
 }
+
+export const inBrowser = typeof window !== 'undefined'

@@ -7,9 +7,7 @@ import {
   onDeactivated,
   type WatchStopHandle
 } from 'vue'
-import { onMountedOrActivated } from '@/utils/hook'
-
-const inBrowser = typeof window !== 'undefined'
+import { onMountedOrActivated, inBrowser } from '@/utils/hook'
 
 type TargetRef = EventTarget | Ref<EventTarget | undefined>
 
