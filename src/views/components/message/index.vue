@@ -7,12 +7,12 @@
   <TcB v-else></TcB>
 </template>
 <script setup lang="ts">
-defineOptions({
-  name: 'MessageComponentPage'
-})
 import { ref } from 'vue'
 import TcA from './a.vue'
 import TcB from './b.vue'
+defineOptions({
+  name: 'MessageComponentPage'
+})
+
 const isShow = ref(true)
 </script>
-<style lang="scss" scoped></style>

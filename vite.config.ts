@@ -65,17 +65,17 @@ export default defineConfig({
         // code splitting 拆包
         manualChunks(id) {
           // vue相关包放到一起
-          if (/node_modules\/(vue|vue-router)/.test(id)) {
+          if (/node_modules\/(vue|vue-router|pinia)/.test(id)) {
             return 'vue-vendor'
           }
-          // svg icon 打包到一起
-          if (/icons\/(.)\.svg/.test(id)) {
-            return 'svg-icons'
+          // element plus相关包打包在一起
+          if (/node_modules\/@?element-plus/.test(id)) {
+            return 'element-ui'
           }
           // 第三方modules打包在一起
-          if (/node_modules/.test(id)) {
-            return 'vendor'
-          }
+          // if (/node_modules/.test(id)) {
+          //   return 'vendor'
+          // }
         }
       }
     }

@@ -48,6 +48,11 @@
                 </el-table-column>
                 <el-table-column prop="name" label="姓名" />
                 <el-table-column prop="address" label="地址" />
+                <el-table-column prop="count">
+                  <template #default="{ row }">
+                    <TcCountTo :end-val="row.count"></TcCountTo>
+                  </template>
+                </el-table-column>
               </el-table>
               <el-empty v-show="list?.length === 0" />
             </el-scrollbar>
@@ -81,6 +86,7 @@
 import { ref, watch } from 'vue'
 import Loading from '@/utils/loading'
 import TcEchart from '@/components/echart/index.vue'
+import TcCountTo from '@/components/count-to/index.vue'
 import { delay } from '@/utils/util'
 import { usePageVisibility } from '@/hooks/usePageVisibility'
 
@@ -163,22 +169,26 @@ const tableData = [
   {
     date: '2016-05-03',
     name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
+    count: 2000
   },
   {
     date: '2016-05-02',
     name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
+    count: -2000
   },
   {
     date: '2016-05-04',
     name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
+    count: 1212
   },
   {
     date: '2016-05-01',
     name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
+    count: -290
   }
 ]
 async function getData() {
